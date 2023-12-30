@@ -32,7 +32,7 @@ public class BookDAO {
 	public Book findBook(Integer idBook)throws SQLException, ClassNotFoundException {
 		if(conn==null)
 		conn = ConnectDatabase.initializeDatabase();
-		String sql = "Select * from book where idBook=?";
+		String sql = "Select * from [Book] where idBook=?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1, idBook);
 		ResultSet rs = pstm.executeQuery();
@@ -85,7 +85,7 @@ public class BookDAO {
 			e.printStackTrace();
 		}
 		int result = 0;
-		String sql = "insert into book(nameBook, idCategory, idBookShelf, idAuthors, amount) values (?,?,?,?,?)";
+		String sql = "insert into [Book](nameBook, idCategory, idBookShelf, idAuthors, amount) values (?,?,?,?,?)";
 		preSt = conn.prepareStatement(sql);
 		preSt.setString(1, book.getNameBook());
 		preSt.setString(2, Integer.toString(book.getCategory().getIdCategory()));
@@ -100,7 +100,7 @@ public class BookDAO {
 		ArrayList<Book> list = new ArrayList();
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Select * from book ";
+		String sql = "Select * from [Book] ";
 		PreparedStatement pstm= conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
@@ -147,7 +147,7 @@ public class BookDAO {
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
 		ArrayList<Book> list = new ArrayList();
-		String sql = "Select * from book where nameBook like '%\"+nameBookSearch+\"%';";
+		String sql = "Select * from [Book] where nameBook like '%\"+nameBookSearch+\"%';";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
@@ -195,7 +195,7 @@ public class BookDAO {
 	    int rs = 0;
 	    if (conn == null) {
 	        conn = ConnectDatabase.initializeDatabase();
-	        String sql = "UPDATE qltv.book SET nameBook = ?, idCategory = ?, idBookShelf = ?, idAuthors = ?, amount = ? WHERE idBook = ?";
+	        String sql = "UPDATE [Book] SET nameBook = ?, idCategory = ?, idBookShelf = ?, idAuthors = ?, amount = ? WHERE idBook = ?";
 	        PreparedStatement pstm = conn.prepareStatement(sql);
 	        pstm.setString(1, book.getNameBook());
 	        pstm.setString(2, Integer.toString(book.getCategory().getIdCategory()));
@@ -212,7 +212,7 @@ public class BookDAO {
 		int result = 0;
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Delete From Book";
+		String sql = "Delete From [Book]";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		result = pstm.executeUpdate();
 		return result;
@@ -221,7 +221,7 @@ public class BookDAO {
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
 		try {
-		String sql = "delete from book where idBook = ?";
+		String sql = "delete from [Book] where idBook = ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1, idBook);
 		return pstm.executeUpdate();
@@ -235,7 +235,7 @@ public class BookDAO {
 		int result = 0;
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "delete from book where idCategory = ?";
+		String sql = "delete from [Book] where idCategory = ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1,idCategory);
 		result = pstm.executeUpdate();
@@ -245,7 +245,7 @@ public class BookDAO {
 		int result = 0;
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "delete from book where idAuthors = ?";
+		String sql = "delete from [Book] where idAuthors = ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1,idAuthors);
 		result = pstm.executeUpdate();
@@ -255,7 +255,7 @@ public class BookDAO {
 		int result = 0;
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "delete from book where idBookShelf = ?";
+		String sql = "delete from [Book] where idBookShelf = ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1,idBookShelf);
 		result = pstm.executeUpdate();

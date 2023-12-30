@@ -23,7 +23,7 @@ public class BookShelfDAO {
 	public BookShelf findBookShelf(Integer idBookShelf) throws SQLException, ClassNotFoundException {
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Select * from BookShelf where idBookShelf = ?";
+		String sql = "Select * from [BookShelf] where idBookShelf = ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);	
 		pstm.setInt(1, idBookShelf);
 		
@@ -40,7 +40,7 @@ public class BookShelfDAO {
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
 		ArrayList<BookShelf> list = new ArrayList();
-		String sql = "Select * from bookshelf where nameBookShelf like '%\"+nameBookShelfSearch+\"%';";
+		String sql = "Select * from [BookShelf] where nameBookShelf like '%\"+nameBookShelfSearch+\"%';";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
@@ -64,7 +64,7 @@ public class BookShelfDAO {
 			e.printStackTrace();
 		}
 		int result =0;
-		String sql = "INSERT INTO bookShelf (nameBookShelf) VALUES (?)";
+		String sql = "INSERT INTO [BookShelf] (nameBookShelf) VALUES (?)";
 		preSt = conn.prepareStatement(sql);
 		preSt.setString(1, bookShelf.getNameBookShelf());
 		result= preSt.executeUpdate();
@@ -74,7 +74,7 @@ public class BookShelfDAO {
 		if(conn == null)
 		conn = ConnectDatabase.initializeDatabase();
 		ArrayList<BookShelf> list = new ArrayList<BookShelf>();
-		String sql = "Select * from bookshelf";
+		String sql = "Select * from [BookShelf]";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
@@ -91,7 +91,7 @@ public class BookShelfDAO {
 		int rs = 0;
 		if(conn == null) {
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "update bookshelf set nameBookShelf =? where idBookShelf=? ";
+		String sql = "update [BookShelf] set nameBookShelf =? where idBookShelf=? ";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, bookShelf.getNameBookShelf());
 		pstm.setInt(2,bookShelf.getIdBookShelf());
@@ -106,7 +106,7 @@ public class BookShelfDAO {
 			conn = ConnectDatabase.initializeDatabase();
 		BookBO bookBO = new BookBO();
 		bookBO.deleteBook_BookShelf(idBookShelf);
-		String sql = "delete from bookshelf where idBookShelf= ?";
+		String sql = "delete from [BookShelf] where idBookShelf= ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1, idBookShelf);
 		result = pstm.executeUpdate();
@@ -116,7 +116,7 @@ public class BookShelfDAO {
 		int result = 0;
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "delete From bookshelf";
+		String sql = "delete From [BookShelf]";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		result = pstm.executeUpdate();
 		return result;

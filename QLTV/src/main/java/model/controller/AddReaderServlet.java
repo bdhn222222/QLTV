@@ -43,12 +43,12 @@ public class AddReaderServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String nameReader = request.getParameter("nameReader");
-        String identity = request.getParameter("identity");
+        String identityy = request.getParameter("identityy");
         String telReader = request.getParameter("telReader");
 
         Reader reader = new Reader();
         reader.setNameReader(nameReader);
-        reader.setIdentity(identity);
+        reader.setIdentityy(identityy);
         reader.setTelReader(telReader);
 
         try {

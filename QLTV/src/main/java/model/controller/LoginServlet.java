@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 //		String errorMessage = "";
 		
 		try {
-			User user = userBO.getAccount(username, password);
+			User user = userBO.getUser(username, password);
 			System.out.println(username + " " + password);
 			System.out.println("from Login " + user);
 			if(user == null) {

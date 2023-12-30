@@ -54,7 +54,7 @@
                                         <tr>
                                             <td><%=stt++%></td>
                                             <td><c:out value="${ticket.reader.nameReader}" /></td>
-                                            <td><c:out value="${ticket.reader.identity}" /></td>
+                                            <td><c:out value="${ticket.reader.identityy}" /></td>
                                             <td><c:out value="${ticket.book.nameBook}" /></td>
                                             <td><c:out value="${ticket.status}" /></td>
                                             <td><c:out value="${ticket.rentDay}" /></td>

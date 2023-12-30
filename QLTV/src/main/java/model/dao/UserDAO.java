@@ -16,7 +16,7 @@ public class UserDAO {
 	public User getUser(String username, String password) throws ClassNotFoundException, SQLException {
 		if (conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Select * from User where username=? and password=?";
+		String sql = "Select * from [User] where username=? and password=?";
 
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		pstm.setString(1, username);
@@ -34,5 +34,10 @@ public class UserDAO {
 			return user;
 		}
 		return null;
+	}
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		UserDAO userDAO = new UserDAO();
+		userDAO.getUser("sa", "123456");
+		System.out.println(userDAO);
 	}
 }

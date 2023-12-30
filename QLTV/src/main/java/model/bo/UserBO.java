@@ -8,7 +8,7 @@ import model.dao.UserDAO;
 public class UserBO {
 	UserDAO userDAO = new UserDAO();
 
-	public User getAccount(String username, String password) throws ClassNotFoundException, SQLException {
+	public User getUser(String username, String password) throws ClassNotFoundException, SQLException {
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);

@@ -3,7 +3,7 @@ package model.bean;
 public class Reader {
 	private Integer idReader;
 	private String nameReader;
-	private String identity;
+	private String identityy;
 	private String telReader;
 	public Integer getIdReader() {
 		return idReader;
@@ -17,11 +17,11 @@ public class Reader {
 	public void setNameReader(String nameReader) {
 		this.nameReader = nameReader;
 	}
-	public String getIdentity() {
-		return identity;
+	public String getIdentityy() {
+		return identityy;
 	}
-	public void setIdentity(String identity) {
-		this.identity = identity;
+	public void setIdentityy(String identityy) {
+		this.identityy = identityy;
 	}
 	public String getTelReader() {
 		return telReader;
@@ -29,11 +29,11 @@ public class Reader {
 	public void setTelReader(String telReader) {
 		this.telReader = telReader;
 	}
-	public Reader(Integer idReader, String nameReader, String identity, String telReader) {
+	public Reader(Integer idReader, String nameReader, String identityy, String telReader) {
 		super();
 		this.idReader = idReader;
 		this.nameReader = nameReader;
-		this.identity = identity;
+		this.identityy = identityy;
 		this.telReader = telReader;
 	}
 	public Reader() {

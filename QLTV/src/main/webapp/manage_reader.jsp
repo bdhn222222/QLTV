@@ -50,9 +50,9 @@
                                     <tr>
                                         <td><%= status++ %></td>
                                         <td><%= reader.getNameReader() %></td>
-                                        <td><%= reader.getIdentity() %></td>
+                                        <td><%= reader.getIdentityy() %></td>
                                         <td><%= reader.getTelReader() %></td>
-                                        
+
                                         <td>
                                             <a href="EditReader?idReader=<%= reader.getIdReader() %>&idReader=<%= reader.getIdReader() %>"><i class="fa-solid fa-pen-to-square"></i></a>
                                         </td>

@@ -19,33 +19,33 @@ public class ReaderDAO {
 	public Reader findReader(Integer idReader) throws SQLException, ClassNotFoundException{
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Select * from reader where idReader = ?";
+		String sql = "Select * from [Reader] where idReader = ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1, idReader);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
 			Integer idReader1 = rs.getInt("idReader");
 			String nameReader = rs.getString("nameReader");
-			String identity = rs.getString("identity");
+			String identityy = rs.getString("identityy");
 			String telReader = rs.getString("telReader");
-			Reader reader = new Reader(idReader1, nameReader, identity, telReader);
+			Reader reader = new Reader(idReader1, nameReader, identityy, telReader);
 			return reader;
 		}
 		return null;
 	}
-	public Reader findReaderIdentity(Integer idReader) throws SQLException, ClassNotFoundException{
+	public Reader findReaderIdentityy(Integer idReader) throws SQLException, ClassNotFoundException{
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Select identity from qltv.reader where idReader = ?";
+		String sql = "Select identityy from [Reader] where idReader = ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1, idReader);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
 			Integer idReader1 = rs.getInt("idReader");
 			String nameReader = rs.getString("nameReader");
-			String identity = rs.getString("identity");
+			String identityy = rs.getString("identityy");
 			String telReader = rs.getString("telReader");
-			Reader reader = new Reader(idReader1, nameReader, identity, telReader);
+			Reader reader = new Reader(idReader1, nameReader, identityy, telReader);
 			return reader;
 		}
 		return null;
@@ -59,11 +59,11 @@ public class ReaderDAO {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		String sql = "insert into reader (nameReader, identity, telReader) values (?,?,?);";
+		String sql = "insert into [Reader] (nameReader, identityy, telReader) values (?,?,?);";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		int result =0;
 		pstm.setString(1, reader.getNameReader());
-		pstm.setString(2, reader.getIdentity());
+		pstm.setString(2, reader.getIdentityy());
 		pstm.setString(3, reader.getTelReader());
 		result = pstm.executeUpdate();
 		return result;
@@ -72,18 +72,18 @@ public class ReaderDAO {
 		if(conn == null)
 		conn = ConnectDatabase.initializeDatabase();
 		ArrayList<Reader> list = new ArrayList<Reader>();
-		String sql = "select * from reader";
+		String sql = "select * from [Reader]";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
 			int idReader = rs.getInt("idReader");
 			String nameReader = rs.getString("nameReader");
-			String identity = rs.getString("identity");
+			String identityy = rs.getString("identityy");
 			String telReader = rs.getString("telReader");
 			Reader reader = new Reader();
 			reader.setIdReader(idReader);
 			reader.setNameReader(nameReader);
-			reader.setIdentity(identity);
+			reader.setIdentityy(identityy);
 			reader.setTelReader(telReader);
 			list.add(reader);
 		}
@@ -93,10 +93,10 @@ public class ReaderDAO {
 		int rs = 0;
 		if(conn == null) {
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Update Reader set nameReader =?, identity =?, telReader =? where idReader=? ";
+		String sql = "Update [Reader] set nameReader =?, identityy =?, telReader =? where idReader=? ";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, reader.getNameReader());
-		pstm.setString(2, reader.getIdentity());
+		pstm.setString(2, reader.getIdentityy());
 		pstm.setString(3, reader.getTelReader());
 		pstm.setInt(4,reader.getIdReader());
 		rs = pstm.executeUpdate();
@@ -107,7 +107,7 @@ public class ReaderDAO {
 		int result =0;
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "delete From reader where idReader= ?";
+		String sql = "delete From [Reader] where idReader= ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1, idReader);
 		result = pstm.executeUpdate();
@@ -126,19 +126,19 @@ public class ReaderDAO {
 		if (conn == null)
 			conn = ConnectDatabase.initializeDatabase();
 		ArrayList<Reader> list = new ArrayList<Reader>();
-		String sql = "Select * from Reader where name like ? ";
+		String sql = "Select * from [Reader] where name like ? ";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		pstm.setString(1, "%"+nameReaderSearch+"%");
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
 			int idReader = rs.getInt("idReader");
 			String nameReader = rs.getString("nameReader");
-			String identity = rs.getString("identity");
+			String identityy = rs.getString("identityy");
 			String telReader = rs.getString("telReader");
 			Reader reader = new Reader();
 			reader.setIdReader(idReader);
 			reader.setNameReader(nameReader);
-			reader.setIdentity(identity);
+			reader.setIdentityy(identityy);
 			reader.setTelReader(telReader);
 			list.add(reader);
 		}
@@ -150,7 +150,7 @@ public class ReaderDAO {
 	    if (conn == null)
 	        conn = ConnectDatabase.initializeDatabase();
 
-	    String count1 = "SELECT COUNT(*) AS totalTickets FROM Ticket WHERE idReader = ?";
+	    String count1 = "SELECT COUNT(*) AS totalTickets FROM [Ticket] WHERE idReader = ?";
 	    try (PreparedStatement countStmt = conn.prepareStatement(count1)) {
 	        countStmt.setString(1, idReader);
 	        ResultSet resultSet = countStmt.executeQuery();

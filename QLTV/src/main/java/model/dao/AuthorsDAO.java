@@ -19,7 +19,7 @@ public class AuthorsDAO {
 	public Authors findAuthors(int idAuthors) throws SQLException, ClassNotFoundException {
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Select * from qltv.authors where idAuthors = ?";
+		String sql = "Select * from [Authors] where idAuthors = ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);	
 		pstm.setInt(1, idAuthors);
 		
@@ -43,7 +43,7 @@ public class AuthorsDAO {
 			e.printStackTrace();
 		}
 		int result =0;
-		String sql = "INSERT INTO authors (nameAuthors) VALUES (?)";
+		String sql = "INSERT INTO [Authors] (nameAuthors) VALUES (?)";
 		preSt = conn.prepareStatement(sql);
 		preSt.setString(1, authors.getNameAuthors());
 		result= preSt.executeUpdate();
@@ -53,7 +53,7 @@ public class AuthorsDAO {
 		if(conn == null)
 		conn = ConnectDatabase.initializeDatabase();
 		ArrayList<Authors> list = new ArrayList<Authors>();
-		String sql = "Select * from authors";
+		String sql = "Select * from [Authors]";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
@@ -70,7 +70,7 @@ public class AuthorsDAO {
 		int rs = 0;
 		if(conn == null) {
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "update qltv.authors set nameAuthors =? where idAuthors=? ";
+		String sql = "update [Authors] set nameAuthors =? where idAuthors=? ";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, authors.getNameAuthors());
 		pstm.setInt(2,authors.getIdAuthors());
@@ -85,7 +85,7 @@ public class AuthorsDAO {
 			conn = ConnectDatabase.initializeDatabase();
 		BookBO bookBO = new BookBO();
 		bookBO.deleteBookAuthors(idAuthors);
-		String sql = "Delete From Authors where idAuthors= ?";
+		String sql = "Delete From [Authors] where idAuthors= ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1, idAuthors);
 		result = pstm.executeUpdate();
@@ -95,7 +95,7 @@ public class AuthorsDAO {
 		int result = 0;
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "delete from authors";
+		String sql = "delete from [Authors]";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		result = pstm.executeUpdate();
 		return result;

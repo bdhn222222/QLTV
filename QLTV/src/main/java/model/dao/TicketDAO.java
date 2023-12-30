@@ -39,7 +39,7 @@ public class TicketDAO {
 	    if(conn == null)
 	        conn = ConnectDatabase.initializeDatabase();
 	    
-	    String sql = "SELECT t.* FROM Ticket t INNER JOIN Book b ON t.idBook = b.idBook WHERE b.nameBook LIKE ?";
+	    String sql = "SELECT t.* FROM [Ticket] t INNER JOIN Book b ON t.idBook = b.idBook WHERE b.nameBook LIKE ?";
 	    PreparedStatement pstm = conn.prepareStatement(sql);
 	    pstm.setString(1, "%" + bookNameSearch + "%");
 	    ResultSet rs = pstm.executeQuery();
@@ -83,7 +83,7 @@ public class TicketDAO {
 	    if(conn == null)
 	        conn = ConnectDatabase.initializeDatabase();
 	    
-	    String sql = "SELECT t.* FROM Ticket t INNER JOIN reader r ON t.idReader = r.idReader WHERE r.nameReader = ?";
+	    String sql = "SELECT t.* FROM [Ticket] t INNER JOIN [Reader] r ON t.idReader = r.idReader WHERE r.nameReader = ?";
 	    PreparedStatement pstm = conn.prepareStatement(sql);
 	    pstm.setString(1,  "%" + readerNameSearch + "%");
 	    ResultSet rs = pstm.executeQuery();
@@ -127,7 +127,7 @@ public class TicketDAO {
 	    if(conn == null)
 	        conn = ConnectDatabase.initializeDatabase();
 	    
-	    String sql = "select * from ticket where idTicket  = ?";
+	    String sql = "select * from [Ticket] where idTicket  = ?";
 	    PreparedStatement pstm = conn.prepareStatement(sql);
 	    pstm.setInt(1, idTicket);
 	    ResultSet rs = pstm.executeQuery();
@@ -170,7 +170,7 @@ public class TicketDAO {
 	public int insertTicket(Ticket ticket) throws ClassNotFoundException, SQLException{
 		if(conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "insert into ticket (idBook, idReader, status, rentDay, returnDay, imperativeReturnDay) values (?,?,?,?,?,?)";
+		String sql = "insert into [Ticket] (idBook, idReader, status, rentDay, returnDay, imperativeReturnDay) values (?,?,?,?,?,?)";
 		int result = 0;
 		pstm = conn.prepareStatement(sql);
 		pstm.setInt(1, ticket.getBook().getIdBook());
@@ -187,7 +187,7 @@ public class TicketDAO {
 	    if (conn == null)
 	        conn = ConnectDatabase.initializeDatabase();
 
-	    String sql = "SELECT * FROM ticket";
+	    String sql = "SELECT * FROM [Ticket]";
 	    PreparedStatement pstm = conn.prepareStatement(sql);
 	    ResultSet rs = pstm.executeQuery();
 
@@ -230,7 +230,7 @@ public class TicketDAO {
 	    if(conn == null)
 	        conn = ConnectDatabase.initializeDatabase();
 
-	    String sql = "UPDATE Ticket SET idBook = ?, idReader = ?, returnDay = ?, rentDay = ?, imperativeReturnDay = ?, status = ? WHERE idTicket = ?";
+	    String sql = "UPDATE [Ticket] SET idBook = ?, idReader = ?, returnDay = ?, rentDay = ?, imperativeReturnDay = ?, status = ? WHERE idTicket = ?";
 	    PreparedStatement pstm = conn.prepareStatement(sql);
 	    pstm.setInt(1, ticket.getBook().getIdBook());
 	    pstm.setInt(2, ticket.getReader().getIdReader());
@@ -246,7 +246,7 @@ public class TicketDAO {
 	    if(conn == null)
 	        conn = ConnectDatabase.initializeDatabase();
 	    try {
-		    String sql = "delete from ticket where idTicket = ?";
+		    String sql = "delete from [Ticket] where idTicket = ?";
 		    PreparedStatement pstm = conn.prepareStatement(sql);
 		    pstm.setInt(1, idTicket);
 		    return pstm.executeUpdate();
@@ -260,7 +260,7 @@ public class TicketDAO {
 	    if(conn == null)
 	        conn = ConnectDatabase.initializeDatabase();
 
-	    String sql = "DELETE FROM Ticket";
+	    String sql = "DELETE FROM [Ticket]";
 	    PreparedStatement pstm = conn.prepareStatement(sql);
 	    return pstm.executeUpdate();
 	}
@@ -269,7 +269,7 @@ public class TicketDAO {
 		int result = 0;
 		if (conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "update ticket set status=1  where idTicket=? ";
+		String sql = "update [Ticket] set status=1  where idTicket=? ";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		pstm.setString(1, idTicket);
 		result = pstm.executeUpdate();
@@ -280,7 +280,7 @@ public int updateStatus0(String idTicket) throws SQLException, ClassNotFoundExce
 		int result = 0;
 		if (conn == null)
 			conn = ConnectDatabase.initializeDatabase();
-		String sql = "update ticket set status=0  where idTicket=? ";
+		String sql = "update [Ticket] set status=0  where idTicket=? ";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		pstm.setString(1, idTicket);
 		result = pstm.executeUpdate();
@@ -294,13 +294,13 @@ public int updateStatus0(String idTicket) throws SQLException, ClassNotFoundExce
 	    conn.setAutoCommit(false); // Bắt đầu giao dịch
 
 	    try {
-	        String updateTicketQuery = "UPDATE Ticket SET status = 0 WHERE idTicket = ?";
+	        String updateTicketQuery = "UPDATE [Ticket] SET status = 0 WHERE idTicket = ?";
 	        PreparedStatement updateTicketStmt = conn.prepareStatement(updateTicketQuery);
 	        updateTicketStmt.setString(1, idTicket);
 	        int updatedRows = updateTicketStmt.executeUpdate();
 
 	        if (updatedRows > 0) {
-	            String getBookIdQuery = "SELECT idBook FROM Ticket WHERE idTicket = ?";
+	            String getBookIdQuery = "SELECT idBook FROM [Ticket] WHERE idTicket = ?";
 	            PreparedStatement getBookIdStmt = conn.prepareStatement(getBookIdQuery);
 	            getBookIdStmt.setString(1, idTicket);
 	            ResultSet bookIdResultSet = getBookIdStmt.executeQuery();
@@ -308,7 +308,7 @@ public int updateStatus0(String idTicket) throws SQLException, ClassNotFoundExce
 	            if (bookIdResultSet.next()) {
 	                String idBook = bookIdResultSet.getString("idBook");
 
-	                String updateBookQuery = "UPDATE Book SET amount = amount + 1 WHERE idBook = ?";
+	                String updateBookQuery = "UPDATE [Book] SET amount = amount + 1 WHERE idBook = ?";
 	                PreparedStatement updateBookStmt = conn.prepareStatement(updateBookQuery);
 	                updateBookStmt.setString(1, idBook);
 	                updateBookStmt.executeUpdate();
@@ -335,13 +335,13 @@ public int updateStatus0(String idTicket) throws SQLException, ClassNotFoundExce
 	    conn.setAutoCommit(false); // Bắt đầu giao dịch
 
 	    try {
-	        String updateTicketQuery = "UPDATE Ticket SET status = 1 WHERE idTicket = ?";
+	        String updateTicketQuery = "UPDATE [Ticket] SET status = 1 WHERE idTicket = ?";
 	        PreparedStatement updateTicketStmt = conn.prepareStatement(updateTicketQuery);
 	        updateTicketStmt.setString(1, idTicket);
 	        int updatedRows = updateTicketStmt.executeUpdate();
 
 	        if (updatedRows > 0) {
-	            String getBookIdQuery = "SELECT idBook FROM Ticket WHERE idTicket = ?";
+	            String getBookIdQuery = "SELECT idBook FROM [Ticket] WHERE idTicket = ?";
 	            PreparedStatement getBookIdStmt = conn.prepareStatement(getBookIdQuery);
 	            getBookIdStmt.setString(1, idTicket);
 	            ResultSet bookIdResultSet = getBookIdStmt.executeQuery();
@@ -349,7 +349,7 @@ public int updateStatus0(String idTicket) throws SQLException, ClassNotFoundExce
 	            if (bookIdResultSet.next()) {
 	                String idBook = bookIdResultSet.getString("idBook");
 
-	                String updateBookQuery = "UPDATE Book SET amount = amount - 1 WHERE idBook = ?";
+	                String updateBookQuery = "UPDATE [Book] SET amount = amount - 1 WHERE idBook = ?";
 	                PreparedStatement updateBookStmt = conn.prepareStatement(updateBookQuery);
 	                updateBookStmt.setString(1, idBook);
 	                updateBookStmt.executeUpdate();

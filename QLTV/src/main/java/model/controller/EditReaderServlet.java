@@ -59,7 +59,7 @@ public class EditReaderServlet extends HttpServlet {
 
         String idReaderStr = request.getParameter("idReader");
         String nameReader = request.getParameter("nameReader");
-        String identity = request.getParameter("identity");
+        String identityy = request.getParameter("identityy");
         String telReader = request.getParameter("telReader");
 
         if (idReaderStr != null && !idReaderStr.isEmpty()) {
@@ -68,7 +68,7 @@ public class EditReaderServlet extends HttpServlet {
                 Reader reader = new Reader();
                 reader.setIdReader(idReader);
                 reader.setNameReader(nameReader);
-                reader.setIdentity(identity);
+                reader.setIdentityy(identityy);
                 reader.setTelReader(telReader);
 
                 ReaderBO readerBO = new ReaderBO();
