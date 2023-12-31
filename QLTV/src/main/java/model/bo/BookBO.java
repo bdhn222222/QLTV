@@ -33,7 +33,15 @@ public class BookBO {
 		if (result != 0)
 			return true;
 		return false;
-		
+	}
+	public ArrayList<Book> getBookbyAuthors(Integer idAuthors) throws SQLException, ClassNotFoundException{
+		return bookDAO.getBookbyAuthors(idAuthors);
+	}
+	public ArrayList<Book> getBookbyCategory(Integer idCategory) throws SQLException, ClassNotFoundException{
+		return bookDAO.getBookbyCategory(idCategory);
+	}
+	public ArrayList<Book> getBookbyBookShelf(Integer idBookShelf) throws SQLException, ClassNotFoundException{
+		return bookDAO.getBookbyBookShelf(idBookShelf);
 	}
 	public int deleteBookCategory(Integer idCategory) throws SQLException, ClassNotFoundException{
 		return bookDAO.deleteBookCategory(idCategory);

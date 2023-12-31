@@ -31,10 +31,7 @@
                             </select>
                         </div>
                                             
-                        <div class="form-group">
-                            <label for="identity">Identity</label>
-                            <input type="text" name="identityy" id="identityy" value="${ticket.reader.identityy}" class="form-control">
-                        </div>
+                        
                                                             
                         <div class="form-group">
                             <label for="book">Change Book</label>

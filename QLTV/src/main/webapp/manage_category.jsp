@@ -13,13 +13,17 @@
     <section class="content my-3">
         <div id="wrapper">
             <div class="container">
-            <% String errorString = (String) request.getAttribute("errorString"); %>
-            <% if (errorString != null) { %>
-                <div class="alert alert-info"><%= errorString %></div>
-            <% } %>
+            
                 <div class="row justify-content-around">
                 <form action="<%= request.getContextPath()%>/ManageCategory" method="POST" class="bg-black text-light col-md-6 bg-light p-3 my-3">
-                        <div class="row">
+                        <%-- Hiển thị thông báo lỗi nếu có --%>
+							    <% String errorString = (String)request.getAttribute("errorString"); %>
+							    <% if(errorString != null && !errorString.isEmpty()) { %>
+							        <div class="alert alert-danger">
+							            <strong>Error:</strong> <%= errorString %>
+							        </div>
+							    <% } %>
+							    <div class="row">
                             <div class="col-md-8">
                                 <h1 class=" tex-uppercase h3 py-2">List of Category</h1>
                             </div>

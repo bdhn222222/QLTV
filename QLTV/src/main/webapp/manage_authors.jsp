@@ -17,6 +17,13 @@
             <div class="container">
                 <div class="row justify-content-around">
                     <form action="ManageAuthors" class="bg-black text-light col-md-7 bg-light p-3 my-3">
+                    <%-- Hiển thị thông báo lỗi nếu có --%>
+							    <% String errorString = (String)request.getAttribute("errorString"); %>
+							    <% if(errorString != null && !errorString.isEmpty()) { %>
+							        <div class="alert alert-danger">
+							            <strong>Error:</strong> <%= errorString %>
+							        </div>
+							    <% } %>
                         <div class="row">
                     		<div class="col-md-8">
 		                    	<h1 class=" tex-uppercase h3 py-2">List of authors</h1>
@@ -40,7 +47,7 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <% 
+                               <% 
                                 List<Authors> authorsList = (List<Authors>) request.getAttribute("authorsList");
                                 if (authorsList != null) {
                                 	int stt=1;
@@ -49,21 +56,24 @@
                                     <tr>
                                         <td><%=stt++%></td>
                                         <td><%= authors.getNameAuthors() %></td>
+                                        
                                         <td>
                                             <a href="EditAuthors?idAuthors=<%= authors.getIdAuthors() %>&idAuthors=<%= authors.getIdAuthors() %>">
                                             	<i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="DeleteAuthors?idAuthors=<%= authors.getIdAuthors() %>&idAuthors=<%= authors.getIdAuthors() %>">
-                                            	<i class="fa-solid fa-trash"></i>
-                                            </a>
+                                           <a href="DeleteAuthors?idAuthors=<%= authors.getIdAuthors() %>">
+												    <i class="fa-solid fa-trash"></i>
+												</a>
+
                                         </td>
                                     </tr>
                                 <% 
                                     }
                                 }
                                 %>
+
                             </tbody>
                             </table>
                           </div>

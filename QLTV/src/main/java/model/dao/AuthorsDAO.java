@@ -18,8 +18,8 @@ public class AuthorsDAO {
 	
 	public Authors findAuthors(int idAuthors) throws SQLException, ClassNotFoundException {
 		if(conn == null)
-			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Select * from [Authors] where idAuthors = ?";
+			conn = ConnectDatabase.getMySQLConnection();
+		String sql = "Select * from authors where idAuthors = ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);	
 		pstm.setInt(1, idAuthors);
 		
@@ -35,7 +35,7 @@ public class AuthorsDAO {
 	
 	public int insertAuthors(Authors authors) throws SQLException, ClassNotFoundException{
 		if(conn == null)
-		conn = ConnectDatabase.initializeDatabase();
+		conn = ConnectDatabase.getMySQLConnection();
 		try {
 			st = conn.createStatement();
 		}catch (Exception e) {
@@ -43,7 +43,7 @@ public class AuthorsDAO {
 			e.printStackTrace();
 		}
 		int result =0;
-		String sql = "INSERT INTO [Authors] (nameAuthors) VALUES (?)";
+		String sql = "INSERT INTO authors (nameAuthors) VALUES (?)";
 		preSt = conn.prepareStatement(sql);
 		preSt.setString(1, authors.getNameAuthors());
 		result= preSt.executeUpdate();
@@ -51,9 +51,9 @@ public class AuthorsDAO {
 	}
 	public ArrayList<Authors> getAllAuthors() throws SQLException, ClassNotFoundException{
 		if(conn == null)
-		conn = ConnectDatabase.initializeDatabase();
+		conn = ConnectDatabase.getMySQLConnection();
 		ArrayList<Authors> list = new ArrayList<Authors>();
-		String sql = "Select * from [Authors]";
+		String sql = "Select * from authors";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
@@ -69,8 +69,8 @@ public class AuthorsDAO {
 	public int updateAuthors(Authors authors) throws SQLException, ClassNotFoundException{
 		int rs = 0;
 		if(conn == null) {
-			conn = ConnectDatabase.initializeDatabase();
-		String sql = "update [Authors] set nameAuthors =? where idAuthors=? ";
+			conn = ConnectDatabase.getMySQLConnection();
+		String sql = "update authors set nameAuthors =? where idAuthors=? ";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, authors.getNameAuthors());
 		pstm.setInt(2,authors.getIdAuthors());
@@ -82,10 +82,10 @@ public class AuthorsDAO {
 	public int deleteAuthors(int idAuthors) throws SQLException, ClassNotFoundException{
 		int result =0;
 		if(conn == null)
-			conn = ConnectDatabase.initializeDatabase();
+			conn = ConnectDatabase.getMySQLConnection();
 		BookBO bookBO = new BookBO();
 		bookBO.deleteBookAuthors(idAuthors);
-		String sql = "Delete From [Authors] where idAuthors= ?";
+		String sql = "Delete From authors where idAuthors= ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1, idAuthors);
 		result = pstm.executeUpdate();
@@ -94,8 +94,8 @@ public class AuthorsDAO {
 	public int deleteAllAuthors() throws SQLException, ClassNotFoundException{
 		int result = 0;
 		if(conn == null)
-			conn = ConnectDatabase.initializeDatabase();
-		String sql = "delete from [Authors]";
+			conn = ConnectDatabase.getMySQLConnection();
+		String sql = "delete from authors";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		result = pstm.executeUpdate();
 		return result;

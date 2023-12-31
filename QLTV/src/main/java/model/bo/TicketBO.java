@@ -2,6 +2,8 @@ package model.bo;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.bean.Book;
 import model.bean.Ticket;
 import model.dao.TicketDAO;
 
@@ -41,7 +43,12 @@ public class TicketBO {
 		if (result != 0)
 			return true;
 		return false;
-		
+	}
+    public ArrayList<Ticket> getTicketbyReader(Integer idReader) throws SQLException, ClassNotFoundException{
+		return ticketDAO.getTicketbyReader(idReader);
+	}
+	public ArrayList<Ticket> getTicketbyBook(Integer idBook) throws SQLException, ClassNotFoundException{
+		return ticketDAO.getTicketbyBook(idBook);
 	}
 
     public int deleteAllTicket() throws ClassNotFoundException, SQLException {

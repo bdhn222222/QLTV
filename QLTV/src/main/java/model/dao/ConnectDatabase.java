@@ -7,18 +7,18 @@ import java.sql.SQLException;
 
 
 public class ConnectDatabase {
-
-	public static void main(String[] args) throws SQLException, ClassNotFoundException {
-		Connection c = ConnectDatabase.initializeDatabase();
-	}
-
-	protected static Connection initializeDatabase() throws ClassNotFoundException, SQLException {
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String url = "jdbc:sqlserver://NGUYENXINHDEP:1433;encrypt=true;trustServerCertificate=true;databaseName=qltv;integratedSecurity=true;";
-		String user = "sa";
+	
+	public static Connection getMySQLConnection() throws ClassNotFoundException, SQLException
+	{
+		String dbURL = "jdbc:mysql://localhost:3306/qltv?useUnicode=true&characterEncoding=UTF-8";
+		String username = "sa";
 		String password = "123456";
-		Connection con = DriverManager.getConnection(url, user, password);
-		System.out.println("Connected!");
-		return con;
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection conn = (Connection) DriverManager.getConnection(dbURL, username, password);
+		if (conn != null) {
+			System.out.println("Kết nối thành công");;
+			return conn;
+		}
+		return null;
 	}
 }

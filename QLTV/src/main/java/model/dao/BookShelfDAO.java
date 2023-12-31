@@ -22,8 +22,8 @@ public class BookShelfDAO {
 	
 	public BookShelf findBookShelf(Integer idBookShelf) throws SQLException, ClassNotFoundException {
 		if(conn == null)
-			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Select * from [BookShelf] where idBookShelf = ?";
+			conn = ConnectDatabase.getMySQLConnection();
+		String sql = "Select * from bookshelf where idBookShelf = ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);	
 		pstm.setInt(1, idBookShelf);
 		
@@ -38,9 +38,9 @@ public class BookShelfDAO {
 	}
 	public ArrayList<BookShelf> getSearchBookShelf(String nameBookShelfSearch) throws SQLException, ClassNotFoundException{
 		if(conn == null)
-			conn = ConnectDatabase.initializeDatabase();
+			conn = ConnectDatabase.getMySQLConnection();
 		ArrayList<BookShelf> list = new ArrayList();
-		String sql = "Select * from [BookShelf] where nameBookShelf like '%\"+nameBookShelfSearch+\"%';";
+		String sql = "Select * from bookshelf where nameBookShelf like '%\"+nameBookShelfSearch+\"%';";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
@@ -56,7 +56,7 @@ public class BookShelfDAO {
 	}
 	public int insertBookShelf(BookShelf bookShelf) throws SQLException, ClassNotFoundException{
 		if(conn == null)
-		conn = ConnectDatabase.initializeDatabase();
+		conn = ConnectDatabase.getMySQLConnection();
 		try {
 			st = conn.createStatement();
 		}catch (Exception e) {
@@ -64,7 +64,7 @@ public class BookShelfDAO {
 			e.printStackTrace();
 		}
 		int result =0;
-		String sql = "INSERT INTO [BookShelf] (nameBookShelf) VALUES (?)";
+		String sql = "INSERT INTO bookshelf (nameBookShelf) VALUES (?)";
 		preSt = conn.prepareStatement(sql);
 		preSt.setString(1, bookShelf.getNameBookShelf());
 		result= preSt.executeUpdate();
@@ -72,9 +72,9 @@ public class BookShelfDAO {
 	}
 	public ArrayList<BookShelf> getAllBookShelf() throws SQLException, ClassNotFoundException{
 		if(conn == null)
-		conn = ConnectDatabase.initializeDatabase();
+		conn = ConnectDatabase.getMySQLConnection();
 		ArrayList<BookShelf> list = new ArrayList<BookShelf>();
-		String sql = "Select * from [BookShelf]";
+		String sql = "Select * from bookshelf";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
@@ -90,8 +90,8 @@ public class BookShelfDAO {
 	public int updateBookShelf(BookShelf bookShelf) throws SQLException, ClassNotFoundException{
 		int rs = 0;
 		if(conn == null) {
-			conn = ConnectDatabase.initializeDatabase();
-		String sql = "update [BookShelf] set nameBookShelf =? where idBookShelf=? ";
+			conn = ConnectDatabase.getMySQLConnection();
+		String sql = "update bookshelf set nameBookShelf =? where idBookShelf=? ";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, bookShelf.getNameBookShelf());
 		pstm.setInt(2,bookShelf.getIdBookShelf());
@@ -103,10 +103,10 @@ public class BookShelfDAO {
 	public int deleteBookShelf(int idBookShelf) throws SQLException, ClassNotFoundException{
 		int result =0;
 		if(conn == null)
-			conn = ConnectDatabase.initializeDatabase();
+			conn = ConnectDatabase.getMySQLConnection();
 		BookBO bookBO = new BookBO();
 		bookBO.deleteBook_BookShelf(idBookShelf);
-		String sql = "delete from [BookShelf] where idBookShelf= ?";
+		String sql = "delete from bookshelf where idBookShelf= ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1, idBookShelf);
 		result = pstm.executeUpdate();
@@ -115,8 +115,8 @@ public class BookShelfDAO {
 	public int deleteAllBookShelf() throws SQLException, ClassNotFoundException{
 		int result = 0;
 		if(conn == null)
-			conn = ConnectDatabase.initializeDatabase();
-		String sql = "delete From [BookShelf]";
+			conn = ConnectDatabase.getMySQLConnection();
+		String sql = "delete From bookshelf";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		result = pstm.executeUpdate();
 		return result;

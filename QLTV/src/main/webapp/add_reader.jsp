@@ -25,7 +25,7 @@
 
                         <div class="form-group">
                             <label for="cccd">Identity</label>
-                            <input type="text" name="identityy" id="identityy" class="form-control bg-dark" style="color:white;">
+                            <input type="text" name="identity" id="identity" class="form-control bg-dark" style="color:white;">
                         </div>
                         
                         <div class="form-group">

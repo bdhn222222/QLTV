@@ -19,6 +19,13 @@
             <div class="container">
                 <div class="row justify-content-around">
                     <form action="ManageBook" class="bg-black text-light col-md-10 bg-light p-3 my-3">
+                     <%-- Hiển thị thông báo lỗi nếu có --%>
+							    <% String errorString = (String)request.getAttribute("errorString"); %>
+							    <% if(errorString != null && !errorString.isEmpty()) { %>
+							        <div class="alert alert-danger">
+							            <strong>Error:</strong> <%= errorString %>
+							        </div>
+							    <% } %>
                         <div class="row">
                     		<div class="col-md-9">
 		                    	<h1 class="tex-uppercase h3 py-2">List of books</h1>

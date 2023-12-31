@@ -17,8 +17,8 @@ public class CategoryDAO {
 	
 	public Category findCategory(Integer idCategory)throws SQLException, ClassNotFoundException {
 		if(conn == null)
-			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Select * from [Category] where idCategory = ?";
+			conn = ConnectDatabase.getMySQLConnection();
+		String sql = "Select * from category where idCategory = ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);	
 		pstm.setInt(1, idCategory);
 		
@@ -34,7 +34,7 @@ public class CategoryDAO {
 	
 	public int insertCategory(Category category) throws SQLException, ClassNotFoundException{
 		if(conn == null)
-		conn = ConnectDatabase.initializeDatabase();
+		conn = ConnectDatabase.getMySQLConnection();
 		try {
 			st = conn.createStatement();
 		}catch (Exception e) {
@@ -42,7 +42,7 @@ public class CategoryDAO {
 			e.printStackTrace();
 		}
 		int result =0;
-		String sql = "INSERT INTO [Category] (nameCategory) VALUES (?)";
+		String sql = "INSERT INTO category (nameCategory) VALUES (?)";
 		preSt = conn.prepareStatement(sql);
 		preSt.setString(1, category.getNameCategory());
 		result= preSt.executeUpdate();
@@ -50,9 +50,9 @@ public class CategoryDAO {
 	}
 	public ArrayList<Category> getAllCategory() throws SQLException, ClassNotFoundException{
 		if(conn == null)
-		conn = ConnectDatabase.initializeDatabase();
+		conn = ConnectDatabase.getMySQLConnection();
 		ArrayList<Category> list = new ArrayList<Category>();
-		String sql = "Select * from [Category]";
+		String sql = "Select * from category";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
@@ -68,8 +68,8 @@ public class CategoryDAO {
 	public int updateCategory(Category category) throws SQLException, ClassNotFoundException{
 		int rs = 0;
 		if(conn == null) {
-			conn = ConnectDatabase.initializeDatabase();
-		String sql = "Update [Category] set nameCategory =? where idCategory=? ";
+			conn = ConnectDatabase.getMySQLConnection();
+		String sql = "Update category set nameCategory =? where idCategory=? ";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setString(1, category.getNameCategory());
 		pstm.setInt(2,category.getIdCategory());
@@ -80,10 +80,10 @@ public class CategoryDAO {
 	public int deleteCategory(Integer idCategory) throws SQLException, ClassNotFoundException{
 		int result =0;
 		if(conn == null)
-			conn = ConnectDatabase.initializeDatabase();
+			conn = ConnectDatabase.getMySQLConnection();
 		BookBO bookBO = new BookBO();
 		bookBO.deleteBookCategory(idCategory);
-		String sql = "Delete From [Category] where idCategory= ?";
+		String sql = "Delete From category where idCategory= ?";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setInt(1, idCategory);
 		result = pstm.executeUpdate();
@@ -97,8 +97,8 @@ public class CategoryDAO {
 	public int deleteAllCategory() throws SQLException, ClassNotFoundException{
 		int result = 0;
 		if(conn == null)
-			conn = ConnectDatabase.initializeDatabase();
-		String sql = "delete From [Category]";
+			conn = ConnectDatabase.getMySQLConnection();
+		String sql = "delete From category";
 		PreparedStatement pstm = (PreparedStatement) conn.prepareStatement(sql);
 		result = pstm.executeUpdate();
 		return result;

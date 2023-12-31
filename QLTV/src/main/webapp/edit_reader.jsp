@@ -23,7 +23,7 @@
 							</div>		
 							<div class="form-group">
 							    <label for="identity">Change Identity</label>
-							    <input type="text" name="identityy" id="identityy" class="form-control" value="${reader.identityy}">
+							    <input type="text" name="identity" id="identity" class="form-control" value="${reader.identity}">
 							</div>
 							
 							<div class="form-group">
