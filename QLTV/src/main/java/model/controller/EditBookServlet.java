@@ -72,7 +72,7 @@ public class EditBookServlet extends HttpServlet {
 	                }
 	            } catch (NumberFormatException | ClassNotFoundException | SQLException e) {
 	                e.printStackTrace();
-	                errorString = "An error occurred while processing your request.";
+	                errorString = "Invalid ticket conditions. Rollback.";
 	                request.setAttribute("errorString", errorString);
 	                RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp");
 	                dispatcher.forward(request, response);

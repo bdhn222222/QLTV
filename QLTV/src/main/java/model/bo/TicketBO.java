@@ -50,7 +50,12 @@ public class TicketBO {
 	public ArrayList<Ticket> getTicketbyBook(Integer idBook) throws SQLException, ClassNotFoundException{
 		return ticketDAO.getTicketbyBook(idBook);
 	}
-
+	public ArrayList<Ticket>getTicketbyRent_ReturnDay(Integer ticket) throws SQLException, ClassNotFoundException{
+		return ticketDAO.getTicketbyRent_ReturnDay(ticket);
+	}
+	public ArrayList<Ticket>getTicketbyReturn_ImreturnDay(Integer ticket) throws SQLException, ClassNotFoundException{
+		return ticketDAO.getTicketbyReturn_ImreturnDay(ticket);
+	}
     public int deleteAllTicket() throws ClassNotFoundException, SQLException {
         return ticketDAO.deleteAllTicket();
     }

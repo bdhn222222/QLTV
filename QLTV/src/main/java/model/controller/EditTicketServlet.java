@@ -154,9 +154,9 @@ public class EditTicketServlet extends HttpServlet {
                        response.getWriter().println("Update failed!");
                    }
                } catch (NumberFormatException | ClassNotFoundException | SQLException e) {
-                   e.printStackTrace();
-                   response.getWriter().println("An error occurred while processing your request.");
-               }
+            	    e.printStackTrace();
+                    response.getWriter().println("An error occurred while processing your request.");
+            	}
            } else {
                response.getWriter().println("Invalid reader ID!");
            }

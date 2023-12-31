@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(username + " " + password);
 			System.out.println("from Login " + user);
 			if(user == null) {
-				request.setAttribute("errorMessage", "*Your username/password is invalid!");
+				request.setAttribute("errorString", "*Your username/password is invalid!");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
 				HttpSession session = request.getSession();

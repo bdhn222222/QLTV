@@ -469,6 +469,108 @@ public int updateStatus0(String idTicket) throws SQLException, ClassNotFoundExce
 			return null;
 	    
 		}
+	public ArrayList<Ticket> getTicketbyRent_ReturnDay(int idTicket) throws SQLException, ClassNotFoundException {
+	    ArrayList<Ticket> list = new ArrayList<>();
+	    try {
+	        if (conn == null)
+	            conn = ConnectDatabase.getMySQLConnection();
+	        
+	        String sql = "select * from ticket where idTicket = ?  and (rentday - returnday) < 0;";
+	        PreparedStatement pstm = conn.prepareStatement(sql);
+	        pstm.setInt(1, idTicket);
+	        ResultSet rs = pstm.executeQuery();
+	        
+	        while (rs.next()) {
+		    	Integer idTicket1 = rs.getInt("idTicket");
+		        Integer idBook1 = rs.getInt("idBook");
+		        Integer idReader1 = rs.getInt("idReader");
+		        String status = rs.getString("status");
+		        String rentday = rs.getString("rentday");
+		        String returnday = rs.getString("returnday");
+		        String imperativeReturnDay = rs.getString("imperativeReturnDay");
+		        Book book = new Book();
+				try {
+					book = bookBO.findBook(idBook1);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Reader reader = new Reader();
+				try {
+					reader = readerBO.findReader(idReader1);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		        Ticket ticket = new Ticket();
+		        ticket.setIdTicket(idTicket1);
+		        ticket.setBook(book);
+		        ticket.setReader(reader);
+		        ticket.setStatus(status);
+		        ticket.setRentDay(rentday);
+		        ticket.setReturnDay(returnday);
+		        ticket.setImperativeReturnDay(imperativeReturnDay);
+
+		        list.add(ticket);
+	        }
+	        }catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return null;
+	    
+		}
+	public ArrayList<Ticket> getTicketbyReturn_ImreturnDay(int idTicket) throws SQLException, ClassNotFoundException {
+	    ArrayList<Ticket> list = new ArrayList<>();
+	    try {
+	        if (conn == null)
+	            conn = ConnectDatabase.getMySQLConnection();
+	        
+	        String sql = "select * from ticket where idTicket = ?  and (returnday - imperativeday) < 0;";
+	        PreparedStatement pstm = conn.prepareStatement(sql);
+	        pstm.setInt(1, idTicket);
+	        ResultSet rs = pstm.executeQuery();
+	        
+	        while (rs.next()) {
+		    	Integer idTicket1 = rs.getInt("idTicket");
+		        Integer idBook1 = rs.getInt("idBook");
+		        Integer idReader1 = rs.getInt("idReader");
+		        String status = rs.getString("status");
+		        String rentday = rs.getString("rentday");
+		        String returnday = rs.getString("returnday");
+		        String imperativeReturnDay = rs.getString("imperativeReturnDay");
+		        Book book = new Book();
+				try {
+					book = bookBO.findBook(idBook1);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Reader reader = new Reader();
+				try {
+					reader = readerBO.findReader(idReader1);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		        Ticket ticket = new Ticket();
+		        ticket.setIdTicket(idTicket1);
+		        ticket.setBook(book);
+		        ticket.setReader(reader);
+		        ticket.setStatus(status);
+		        ticket.setRentDay(rentday);
+		        ticket.setReturnDay(returnday);
+		        ticket.setImperativeReturnDay(imperativeReturnDay);
+
+		        list.add(ticket);
+	        }
+	        }catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return null;
+	    
+		}
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		TicketDAO ticketDAO = new TicketDAO();
 		ticketDAO.getTicketbyBook(4);

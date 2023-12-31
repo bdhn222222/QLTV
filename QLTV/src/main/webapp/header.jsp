@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-3 px-1">
-                	<a class="nav-link" onclick="location.href='instruction.jsp'">
+                	<a class="nav-link" onclick="location.href='home.jsp'">
                 		<img src="img/logo.jpg" alt="logo" class="img-fluid" style="max-width: 165px;">
                 	</a>
                 </div>

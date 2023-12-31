@@ -29,10 +29,13 @@
 				        </div>
 				        <div class="card-body">
 				          <form role="form" action="Login" method="post">
-				          <div
-									class="d-flex flex-row justify-content-md-around align-items-center">
-									<p class="text-danger">${errorMessage}</p>
-								</div>
+				          <%-- Hiển thị thông báo lỗi nếu có --%>
+							    <% String errorString = (String)request.getAttribute("errorString"); %>
+							    <% if(errorString != null && !errorString.isEmpty()) { %>
+							        <div class="alert alert-danger">
+							            <strong>Error:</strong> <%= errorString %>
+							        </div>
+							    <% } %>
 				            <div class="form-group">
 				              <label for="exampleInputEmail1">Username</label>
 				              <input type="text" class="form-control" name="username" placeholder="Tên tài khoản" required="required">

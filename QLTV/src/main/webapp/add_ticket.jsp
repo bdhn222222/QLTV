@@ -54,16 +54,15 @@
 									  </label>
 						</div>
                         </div>
-                        <div class="form-group">
-						    <label for="bd">Borrow date</label>
-						    <input type="date" name="rentday" id="rentday" class="form-control bg-dark" style="color:white;" value="${ticket.rentday != null ? ticket.rentday : ''}" required>
-						</div>
-						
+                        
 						<div class="form-group">
-						    <label for="pd">Payment date</label>
+						    <label for="pd">Borrow date</label>
 						    <input type="date" name="returnday" id="returnday" class="form-control bg-dark" style="color:white;" value="${ticket.returnday != null ? ticket.returnday : ''}" required>
 						</div>
-						
+						<div class="form-group">
+						    <label for="bd">Payment date</label>
+						    <input type="date" name="rentday" id="rentday" class="form-control bg-dark" style="color:white;" value="${ticket.rentday != null ? ticket.rentday : ''}" required>
+						</div>
 						<div class="form-group">
 						    <label for="pd">Imperative Payment date</label>
 						    <input type="date" name="imreturnday" id="imreturnday" class="form-control bg-dark" style="color:white;" value="${ticket.imperativeday != null ? ticket.imperativeday : ''}" required>

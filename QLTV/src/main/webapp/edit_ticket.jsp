@@ -18,6 +18,13 @@
                     <c:set var="ticketList" value="${ticketList}" />
                     
                     <form action="EditTicket" method="post"  class="col-md-5 bg-light p-3 my-3">
+                    <%-- Hiển thị thông báo lỗi nếu có --%>
+							    <% String errorString = (String)request.getAttribute("errorString"); %>
+							    <% if(errorString != null && !errorString.isEmpty()) { %>
+							        <div class="alert alert-danger">
+							            <strong>Error:</strong> <%= errorString %>
+							        </div>
+							    <% } %>
                         <h1 class="text-uppercase h3 py-3">Edit Ticket Information</h1>
                         <input type="hidden" name="idTicket" value="${ticket.idTicket}" />
                         <div class="form-group">
@@ -57,12 +64,12 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="rentday">Borrow date</label>
+                            <label for="rentday">Rent date</label>
                             <input type="date" name="rentday" id="rentday" class="form-control bg-dark" style="color:white;" value="${ticket.rentDay}" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="returnday">Payment date</label>
+                            <label for="returnday">Return date</label>
                             <input type="date" name="returnday" id="returnday" class="form-control bg-dark" style="color:white;" value="${ticket.returnDay}" required>
                         </div>
                         
