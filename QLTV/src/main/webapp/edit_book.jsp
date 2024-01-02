@@ -74,7 +74,7 @@
                 </tr>
                 <tr>
                     <td colspan="2"><input type="button" value="Hủy" class="btn btn-secondary mt-1"
-                                        onclick="location.href='/ManageBook'">
+                                        onclick="location.href='/QLTV/ManageBook'">
                                         </tr>
             </table>
         </form>

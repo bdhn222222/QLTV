@@ -41,7 +41,7 @@
 	                        </div>
 	
 	                        <div class="d-grid gap-2">
-	                            <input type="button" value="Cancel" class="btn btn-secondary mt-1" onclick="location.href='ManangeCategory'">
+	                            <input type="button" value="Cancel" class="btn btn-secondary mt-1" onclick="location.href='/QLTV/ManangeReader'">
 	                        </div>
                         </div>
                         

@@ -88,7 +88,7 @@
                                 <input type="submit" value="Submit" class="btn btn-primary mt-1">
                             </div>
                             <div class="d-grid gap-2">
-                                <input type="button" value="Cancel" class="btn btn-secondary mt-1" onclick="location.href='ManageBook'">
+                                <input type="button" value="Cancel" class="btn btn-secondary mt-1" onclick="location.href='/QLTV/ManageBook'">
                             </div>
                         </div>
                         

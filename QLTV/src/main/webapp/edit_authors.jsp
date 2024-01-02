@@ -28,7 +28,7 @@
 
                                 <div class="d-grid gap-2">
                                     <input type="button" value="Hủy" class="btn btn-secondary mt-1"
-                                        onclick="location.href='/ManageAuthors'">
+                                        onclick="location.href='/QLTV/ManageAuthors'">
                                 </div>
                             </div>
                         </form>

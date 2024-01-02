@@ -79,9 +79,7 @@
 						  
 	                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	                          <li class="nav-item">
-	                            <a class="nav-link text-light" href="home.jsp">Instruction</a>
-	                          </li>
+	                          
 	
 							  <li class="nav-item dropdown">
 	                            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -119,14 +117,22 @@
 	                          
 	                          <li class="nav-item dropdown">
 	                            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-	                              Member management
+	                              Reader of management
 	                            </a>
 	                            <ul class="dropdown-menu bg-shadow">
-	                              <li><a class="dropdown-item text-light" onclick="location.href='ManageReader'" >List of members</a></li>
-	                              <li><a class="dropdown-item text-light" onclick="location.href='AddReader'" >Add member</a></li>
+	                              <li><a class="dropdown-item text-light" onclick="location.href='ManageReader'" >List of reader</a></li>
+	                              <li><a class="dropdown-item text-light" onclick="location.href='AddReader'" >Add reader</a></li>
 	                            </ul>
 	                          </li>
-	                          
+	                          <li class="nav-item dropdown">
+	                            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+	                              Member of management
+	                            </a>
+	                            <ul class="dropdown-menu bg-shadow">
+	                              <li><a class="dropdown-item text-light" onclick="location.href='ManageUser'" >List of members</a></li>
+	                              <li><a class="dropdown-item text-light" onclick="location.href='AddUser'" >Add members</a></li>
+	                            </ul>
+	                          </li>
 	                        </ul>
 	                      </div>
 	                     </div>

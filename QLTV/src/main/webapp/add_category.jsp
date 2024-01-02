@@ -30,7 +30,7 @@
 							<input type="submit" value="Save" class="btn btn-primary mt-1">	                        </div>
 	
 	                        <div class="d-grid gap-2">
-	                            <input type="button" value="Cancel" class="btn btn-secondary mt-1" onclick="location.href='/ManageCategory'">
+	                            <input type="button" value="Cancel" class="btn btn-secondary mt-1" onclick="location.href='/QLTV/ManageCategory'">
 	                        </div>
                         </div>
                     </form>
