@@ -8,76 +8,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Edit Book</title>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
 </head>
 <body>
-	 <section class="content my-3">
+    <section class="content my-3">
         <div id="wrapper">
             <div class="container">
                 <div class="row justify-content-around">
-    <c:if test="${not empty book}">
-        <c:set var="bookShelfList" value="${bookShelfList}" />
-        <c:set var="authorsList" value="${authorsList}" />
-        <c:set var="categoryList" value="${categoryList}" />
-    
-        <form action="EditBook" method="post" class="col-md-5 bg-light p-3 my-3 rounded">
-        <h1 class="tex-uppercase h3 py-3">Edit Book</h1>
-            <input type="hidden" name="idBook" value="${book.idBook}" />
-            <table>
-                <tr>
-                    <td>Name:</td>
-                    <td><input type="text" name="nameBook" value="${book.nameBook}" /></td>
-                </tr>
-                <tr>
-                    <td>Category:</td>
-                    <td>
-                        <select name="category">
-                            <c:forEach var="category" items="${categoryList}">
-                                <option value="${category.idCategory}" <c:if test="${category.idCategory == book.category.idCategory}">selected</c:if>>
-                                    ${category.nameCategory}
-                                </option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Bookshelf:</td>
-                    <td>
-                        <select name="bookShelf">
-                            <c:forEach var="bookShelf" items="${bookShelfList}">
-                                <option value="${bookShelf.idBookShelf}" <c:if test="${bookShelf.idBookShelf == book.bookShelf.idBookShelf}">selected</c:if>>
-                                    ${bookShelf.nameBookShelf}
-                                </option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Authors:</td>
-                    <td>
-                        <select name="authors">
-                            <c:forEach var="authors" items="${authorsList}">
-                                <option value="${authors.idAuthors}" <c:if test="${authors.idAuthors == book.authors.idAuthors}">selected</c:if>>
-                                    ${authors.nameAuthors}
-                                </option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Amount:</td>
-                    <td><input type="text" name="amount" value="${book.amount}" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="submit" value="Save" class="btn btn-secondary mt-1" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="button" value="Hủy" class="btn btn-secondary mt-1"
-                                        onclick="location.href='/QLTV/ManageBook'">
-                                        </tr>
-            </table>
-        </form>
-    </c:if>
+                    <c:if test="${not empty book}">
+                        <c:set var="bookShelfList" value="${bookShelfList}" />
+                        <c:set var="authorsList" value="${authorsList}" />
+                        <c:set var="categoryList" value="${categoryList}" />
+                    
+                        <form action="EditBook" method="post" enctype="multipart/form-data" class="col-md-5 bg-light p-3 my-3 rounded">
+                            <h1 class="tex-uppercase h3 py-3">Edit Book</h1>
+                            <input type="hidden" name="idBook" value="${book.idBook}" />
+                            <table>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td><input type="text" name="nameBook" value="${book.nameBook}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Category:</td>
+                                    <td>
+                                        <select name="category">
+                                            <c:forEach var="category" items="${categoryList}">
+                                                <option value="${category.idCategory}" <c:if test="${category.idCategory == book.category.idCategory}">selected</c:if>>
+                                                    ${category.nameCategory}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Bookshelf:</td>
+                                    <td>
+                                        <select name="bookShelf">
+                                            <c:forEach var="bookShelf" items="${bookShelfList}">
+                                                <option value="${bookShelf.idBookShelf}" <c:if test="${bookShelf.idBookShelf == book.bookShelf.idBookShelf}">selected</c:if>>
+                                                    ${bookShelf.nameBookShelf}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Authors:</td>
+                                    <td>
+                                        <select name="authors">
+                                            <c:forEach var="authors" items="${authorsList}">
+                                                <option value="${authors.idAuthors}" <c:if test="${authors.idAuthors == book.authors.idAuthors}">selected</c:if>>
+                                                    ${authors.nameAuthors}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Amount:</td>
+                                    <td><input type="text" name="amount" value="${book.amount}" /></td>
+                                </tr>
+                                <div class="form-group">
+									<label for="exampleInputFile">Add Image</label>
+									<div class="input-group">
+										<div class="custom-file">
+											<input type="file" accept="image/png, image/jpeg" value = "${book.image}"
+												class="custom-file-input" id="image" name="image" 
+												required>
+												 <label class="custom-file-label"
+												for="customFile" style="color: #a6b0ba; " >Nhấn đây để chọn file</label>
+										</div>
+									</div>
+								</div>
+
+                        
+                                <tr>
+                                    <td colspan="2"><input type="submit" value="Save" class="btn btn-secondary mt-1" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><input type="button" value="Hủy" class="btn btn-secondary mt-1" onclick="location.href='/QLTV/ManageBook'"></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </c:if>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

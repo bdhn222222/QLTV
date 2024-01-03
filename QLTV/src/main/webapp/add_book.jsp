@@ -15,7 +15,7 @@
         <div id="wrapper">
             <div class="container">
                 <div class="row justify-content-around">
-                    <form action="AddBook" method="post"  class="bg-black text-light col-md-5 bg-light p-3 my-3">
+                    <form action="AddBook" method="post" enctype="multipart/form-data" class="bg-black text-light col-md-5 bg-light p-3 my-3">
                         <h1 class="tex-uppercase h3">Add Book</h1>
                         
                         <hr style="border-top: 1px solid white; margin-bottom: 20px;">
@@ -81,7 +81,19 @@
                             </select>
                         </div>
                         
-                        <hr style="border-top: 1px solid white; margin-bottom: 20px;">
+                        
+                        <div class="form-group">
+									<label for="exampleInputFile">Add Image</label>
+									<div class="input-group">
+										<div class="custom-file">
+											<input type="file" accept="image/png, image/jpeg"
+												class="custom-file-input" id="image" name="image"
+												required> <label class="custom-file-label"
+												for="customFile" style="color: #a6b0ba;">Nhấn đây để chọn file</label>
+										</div>
+									</div>
+								</div>
+
                         
                         <div class="form-group">
                             <div class="d-grid gap-2">
@@ -91,6 +103,7 @@
                                 <input type="button" value="Cancel" class="btn btn-secondary mt-1" onclick="location.href='/QLTV/ManageBook'">
                             </div>
                         </div>
+								<hr style="border-top: 1px solid white; margin-bottom: 20px;">
                         
                     </form>
                 </div>

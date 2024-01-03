@@ -1,5 +1,6 @@
 package model.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import model.bean.Authors;
 import model.bean.Book;
 import model.bean.BookShelf;
@@ -31,7 +33,7 @@ public class AddBookServlet extends HttpServlet {
     private AuthorsBO authorsBO = new AuthorsBO();
     private BookShelfBO bookshelfBO = new BookShelfBO();
     private BookBO bookBO = new BookBO();
-
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
@@ -71,12 +73,23 @@ public class AddBookServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String nameBook = request.getParameter("nameBook");
+        Part file = request.getPart("image");
+//		String path = getServletContext().getRealPath("/") + "Resources/images/";
+		String savePath = getServletContext().getRealPath("/") + "Resources\\img\\products";
+		File fileSaveDir = new File(savePath);
+		if (!fileSaveDir.exists()) {
+			fileSaveDir.mkdir();
+		}
+		String fileName = extractfilename(file);
+		file.write(savePath + File.separator + fileName);
+//		String filePath = savePath + File.separator + fileName;
         String idCategory = request.getParameter("category");
         String idBookShelf = request.getParameter("bookShelf");
         String idAuthors = request.getParameter("authors");
         Integer amount = Integer.parseInt(request.getParameter("amount"));
         Book book = new Book();
         book.setNameBook(nameBook);
+        book.setImage(fileName);
         Category category = new Category();
         try {
             int categoryId = Integer.parseInt(idCategory);
@@ -103,6 +116,7 @@ public class AddBookServlet extends HttpServlet {
         book.setBookShelf(bookShelf);
         book.setAuthors(authors);
         book.setAmount(amount);
+       
         try {
             int result = bookBO.insertBook(book);
             if (result > 0) {
@@ -117,4 +131,14 @@ public class AddBookServlet extends HttpServlet {
             doGet(request, response);
         }
     }
+    private String extractfilename(Part file) {
+		String cd = file.getHeader("content-disposition");
+		String[] items = cd.split(";");
+		for (String string : items) {
+			if (string.trim().startsWith("filename")) {
+				return string.substring(string.indexOf("=") + 2, string.length() - 1);
+			}
+		}
+		return "";
+	}
 }

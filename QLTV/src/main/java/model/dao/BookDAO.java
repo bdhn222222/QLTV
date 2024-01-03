@@ -38,6 +38,7 @@ public class BookDAO {
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()) {
 			String nameBook = rs.getString("nameBook");
+			String image = rs.getString("image");
 			Integer idCategory = rs.getInt("idCategory");
 			Integer idAuthors = rs.getInt("idAuthors");
 			Integer idBookShelf = rs.getInt("idBookShelf");
@@ -67,6 +68,7 @@ public class BookDAO {
 			Book book = new Book();
 			book.setIdBook(idBook);
 			book.setNameBook(nameBook);
+			book.setImage(image);
 			book.setCategory(category);
 			book.setBookShelf(bookShelf);
 			book.setAuthors(authors);
@@ -85,9 +87,10 @@ public class BookDAO {
 			e.printStackTrace();
 		}
 		int result = 0;
-		String sql = "insert into book(nameBook, idCategory, idBookShelf, idAuthors, amount) values (?,?,?,?,?)";
+		String sql = "insert into book(nameBook, idCategory, idBookShelf, idAuthors, amount, image) values (?,?,?,?,?,?)";
 		preSt = conn.prepareStatement(sql);
 		preSt.setString(1, book.getNameBook());
+		preSt.setString(6, book.getImage());
 		preSt.setString(2, Integer.toString(book.getCategory().getIdCategory()));
 		preSt.setString(3, Integer.toString(book.getBookShelf().getIdBookShelf()));
 		preSt.setString(4, Integer.toString(book.getAuthors().getIdAuthors()));
@@ -106,6 +109,7 @@ public class BookDAO {
 		while(rs.next()) {
 			Integer idBook = rs.getInt("idBook");
 			String nameBook = rs.getString("nameBook");
+			String image = rs.getString("image");
 			Integer idCategory = rs.getInt("idCategory");
 			Integer idAuthors = rs.getInt("idAuthors");
 			Integer idBookShelf = rs.getInt("idBookShelf");
@@ -135,6 +139,7 @@ public class BookDAO {
 			Book book = new Book();
 			book.setIdBook(idBook);
 			book.setNameBook(nameBook);
+			book.setImage(image);
 			book.setCategory(category);
 			book.setBookShelf(bookShelf);
 			book.setAuthors(authors);
@@ -153,6 +158,7 @@ public class BookDAO {
 		while(rs.next()) {
 			Integer idBook = rs.getInt("idBook");
 			String nameBook = rs.getString("nameBook");
+			String image = rs.getString("image");
 			Integer idCategory = rs.getInt("idCategory");
 			Integer idAuthors = rs.getInt("idAuthors");
 			Integer idBookShelf = rs.getInt("idBookShelf");
@@ -182,6 +188,7 @@ public class BookDAO {
 			Book book = new Book();
 			book.setIdBook(idBook);
 			book.setNameBook(nameBook);
+			book.setImage(image);
 			book.setCategory(category);
 			book.setBookShelf(bookShelf);
 			book.setAuthors(authors);
@@ -195,14 +202,16 @@ public class BookDAO {
 	    int rs = 0;
 	    if (conn == null) {
 	        conn = ConnectDatabase.getMySQLConnection();
-	        String sql = "UPDATE book SET nameBook = ?, idCategory = ?, idBookShelf = ?, idAuthors = ?, amount = ? WHERE idBook = ?";
+	        String sql = "UPDATE book SET nameBook = ?, idCategory = ?, idBookShelf = ?, idAuthors = ?, amount = ?, image = ? WHERE idBook = ?";
 	        PreparedStatement pstm = conn.prepareStatement(sql);
 	        pstm.setString(1, book.getNameBook());
 	        pstm.setString(2, Integer.toString(book.getCategory().getIdCategory()));
 	        pstm.setString(3, Integer.toString(book.getBookShelf().getIdBookShelf()));
 	        pstm.setString(4, Integer.toString(book.getAuthors().getIdAuthors()));
 	        pstm.setInt(5, book.getAmount());
-	        pstm.setInt(6, book.getIdBook());
+	        pstm.setString(6,book.getImage());
+	        pstm.setInt(7, book.getIdBook());
+	        
 	        rs = pstm.executeUpdate();
 	    }
 	    return rs;
@@ -274,6 +283,7 @@ public class BookDAO {
 			while(rs.next()) {
 				Integer idBook = rs.getInt("idBook");
 				String nameBook = rs.getString("nameBook");
+				String image = rs.getString("image");
 				Integer idCategory = rs.getInt("idCategory");
 				Integer idAuthors1 = rs.getInt("idAuthors");
 				Integer idBookShelf = rs.getInt("idBookShelf");
@@ -303,6 +313,7 @@ public class BookDAO {
 				Book book = new Book();
 				book.setIdBook(idBook);
 				book.setNameBook(nameBook);
+				book.setImage(image);
 				book.setCategory(category);
 				book.setBookShelf(bookShelf);
 				book.setAuthors(authors);
@@ -329,6 +340,7 @@ public class BookDAO {
 			while(rs.next()) {
 				Integer idBook = rs.getInt("idBook");
 				String nameBook = rs.getString("nameBook");
+				String image = rs.getString("image");
 				Integer idCategory1 = rs.getInt("idCategory");
 				Integer idAuthors1 = rs.getInt("idAuthors");
 				Integer idBookShelf = rs.getInt("idBookShelf");
@@ -358,6 +370,7 @@ public class BookDAO {
 				Book book = new Book();
 				book.setIdBook(idBook);
 				book.setNameBook(nameBook);
+				book.setImage(image);
 				book.setCategory(category);
 				book.setBookShelf(bookShelf);
 				book.setAuthors(authors);
@@ -385,6 +398,7 @@ public class BookDAO {
 	        while (rs.next()) {
 	            Integer idBook = rs.getInt("idBook");
 	            String nameBook = rs.getString("nameBook");
+	            String image = rs.getString("image");
 	            Integer idCategory1 = rs.getInt("idCategory");
 	            Integer idAuthors1 = rs.getInt("idAuthors");
 	            Integer idBookShelf1 = rs.getInt("idBookShelf");
@@ -398,6 +412,7 @@ public class BookDAO {
 	            Book book = new Book();
 	            book.setIdBook(idBook);
 	            book.setNameBook(nameBook);
+	            book.setImage(image);
 	            book.setCategory(category);
 	            book.setBookShelf(bookShelf);
 	            book.setAuthors(authors);
